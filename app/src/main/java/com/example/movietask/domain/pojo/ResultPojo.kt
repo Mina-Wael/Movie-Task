@@ -1,10 +1,14 @@
 package com.example.movietask.domain.pojo
 
-data class Result(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class ResultPojo(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
-    val id: Int,
+    @PrimaryKey val id: Int,
     val media_type: String,
     val original_language: String,
     val original_title: String,
