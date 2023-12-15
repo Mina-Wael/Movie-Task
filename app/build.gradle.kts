@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.movietask"
-        minSdk = 24
+        minSdk = 22
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
