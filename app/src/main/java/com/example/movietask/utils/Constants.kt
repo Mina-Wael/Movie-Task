@@ -6,5 +6,6 @@ object Constants {
     const val ACCESS_TOKEN =
         "Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MGY2ZDlkMDRmN2M5NzZmYTZkMDA5Y2MyNDM2N2JjYSIsInN1YiI6IjYzYjI5ZDVhYzU2ZDJkMDBmMzBmZWQwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zLyANQSrMFVE1CBYOXvKk9krcRiU9M_2NH10tMCr_e8"
     const val DATABASE_NAME = "MovieDatabase"
+    const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
 }
