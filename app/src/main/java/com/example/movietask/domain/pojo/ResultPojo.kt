@@ -2,6 +2,7 @@ package com.example.movietask.domain.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class ResultPojo(
@@ -20,4 +21,4 @@ data class ResultPojo(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+):Serializable

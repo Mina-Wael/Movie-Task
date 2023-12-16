@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movietask.R
 import com.example.movietask.databinding.FragmentHomeBinding
@@ -87,7 +88,7 @@ class Home : Fragment() {
     }
 
     private val onItemClick = fun(movie: ResultPojo) {
-
+        findNavController().navigate(HomeDirections.actionHomeToDetails(movie))
     }
 
     override fun onDestroyView() {
