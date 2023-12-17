@@ -100,10 +100,12 @@ class Home : Fragment() {
                 }
 
                 is Resource.EmptyOrNUll -> {
+                    binding.progress.visibility = View.GONE
                     showSnackBar(binding.root, it.message)
                 }
 
                 is Resource.Failed -> {
+                    binding.progress.visibility = View.GONE
                     showSnackBar(binding.root, it.message)
                 }
             }
@@ -171,7 +173,7 @@ class Home : Fragment() {
         clearSearchView()
     }
 
-    private fun clearSearchView(){
+    private fun clearSearchView() {
         binding.searchView.setQuery("", false);
         binding.searchView.clearFocus();
     }
