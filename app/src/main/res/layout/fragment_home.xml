@@ -124,5 +124,16 @@
         android:indeterminateTint="@android:color/black"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:id="@+id/tv_message"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
