@@ -6,9 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface RepositoryIntr {
 
-    fun getRemoteMovies(): Flow<Resource<List<ResultPojo>>>
-    suspend fun getSavedMovies(): List<ResultPojo>
-    suspend fun saveMovies(movieList: List<ResultPojo>)
-
+    fun getAllMovies(): Flow<Resource<List<ResultPojo>>>
 
 }

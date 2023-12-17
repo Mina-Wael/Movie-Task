@@ -79,6 +79,8 @@ class Home : Fragment() {
                         }
 
                         is Resource.EmptyOrNUll -> {
+                            binding.tvMessage.visibility = View.VISIBLE
+                            binding.tvMessage.text = it.message
                             binding.progress.visibility = View.GONE
                         }
                     }

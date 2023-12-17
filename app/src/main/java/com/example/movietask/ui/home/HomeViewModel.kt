@@ -24,9 +24,9 @@ class HomeViewModel @Inject constructor(var repo: RepositoryIntr) : ViewModel() 
         MutableStateFlow(Resource.Loading)
     var movieStateFlow: StateFlow<Resource<List<ResultPojo>>> = _movieStateFlow
 
-    fun getRemoteMovie() {
+    private fun getRemoteMovie() {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.getRemoteMovies().collect {
+            repo.getAllMovies().collect {
                 _movieStateFlow.emit(it)
             }
         }

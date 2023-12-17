@@ -11,24 +11,32 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(var local: MovieDao, var remote: RetrofitServices) :
+class RepositoryImpl @Inject constructor(
+    var local: MovieDao,
+    private var remote: RetrofitServices
+) :
     RepositoryIntr {
-    override fun getRemoteMovies(): Flow<Resource<List<ResultPojo>>> = flow {
+    override fun getAllMovies(): Flow<Resource<List<ResultPojo>>> = flow {
         emit(Resource.Loading)
         try {
             var res = remote.getTrendingMovies().body()
-            emit(Resource.Success(res!!.results))
+            saveMovies(res!!.results)
 
         } catch (ex: HttpException) {
             emit(Resource.Failed("Un expected error"))
         } catch (ex: IOException) {
             emit(Resource.Failed("Check your network connection"))
         }
+        val movieList = getSavedMovies()
+        if (movieList.isEmpty()) {
+            emit(Resource.EmptyOrNUll("No data to display"))
+        } else
+            emit(Resource.Success(movieList))
     }
 
-    override suspend fun getSavedMovies(): List<ResultPojo> = local.getAllSavedMovies()
+    private suspend fun getSavedMovies(): List<ResultPojo> = local.getAllSavedMovies()
 
-    override suspend fun saveMovies(movieList: List<ResultPojo>) {
+    private suspend fun saveMovies(movieList: List<ResultPojo>) {
         local.insertMovie(movieList)
     }
 }
