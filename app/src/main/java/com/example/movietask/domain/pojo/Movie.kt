@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-data class ResultPojo(
+data class Movie(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
@@ -21,4 +21,12 @@ data class ResultPojo(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-):Serializable
+):Serializable{
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        if(poster_path.isNullOrEmpty()){
+            result = 31 * result + poster_path.hashCode()
+        }
+        return result
+    }
+}

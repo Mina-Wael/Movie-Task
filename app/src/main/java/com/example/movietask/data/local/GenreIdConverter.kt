@@ -1,7 +1,6 @@
 package com.example.movietask.data.local
 
 import androidx.room.TypeConverter
-import com.example.movietask.domain.pojo.ResultPojo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

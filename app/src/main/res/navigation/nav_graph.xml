@@ -21,6 +21,7 @@
         tools:layout="@layout/fragment_details" >
         <argument
             android:name="movie"
-            app:argType="com.example.movietask.domain.pojo.ResultPojo" />
+            app:argType="com.example.movietask.domain.pojo.Movie"
+            app:nullable="true" />
     </fragment>
 </navigation>

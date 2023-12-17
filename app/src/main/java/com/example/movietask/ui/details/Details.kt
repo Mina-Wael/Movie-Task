@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.movietask.R
 import com.example.movietask.databinding.FragmentDetailsBinding
-import com.example.movietask.domain.pojo.ResultPojo
+import com.example.movietask.domain.pojo.Movie
 import com.example.movietask.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,10 +33,10 @@ class Details : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setDataToUi(args.movie)
+        setDataToUi(args.movie!!)
     }
 
-    private fun setDataToUi(movie: ResultPojo) {
+    private fun setDataToUi(movie: Movie) {
         Glide.with(requireContext()).load(Constants.IMAGE_BASE_URL + movie.poster_path)
             .into(binding.movieImage)
         binding.movieDescription.text = movie.overview
