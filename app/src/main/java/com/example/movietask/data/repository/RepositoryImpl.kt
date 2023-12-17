@@ -2,7 +2,7 @@ package com.example.movietask.data.repository
 
 import com.example.movietask.data.local.MovieDao
 import com.example.movietask.data.remote.RetrofitServices
-import com.example.movietask.domain.pojo.ResultPojo
+import com.example.movietask.domain.pojo.Movie
 import com.example.movietask.domain.repository.RepositoryIntr
 import com.example.movietask.utils.Resource
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +16,7 @@ class RepositoryImpl @Inject constructor(
     private var remote: RetrofitServices
 ) :
     RepositoryIntr {
-    override fun getAllMovies(): Flow<Resource<List<ResultPojo>>> = flow {
+    override fun getAllMovies(): Flow<Resource<List<Movie>>> = flow {
         emit(Resource.Loading)
         try {
             var res = remote.getTrendingMovies().body()
@@ -34,9 +34,24 @@ class RepositoryImpl @Inject constructor(
             emit(Resource.Success(movieList))
     }
 
-    private suspend fun getSavedMovies(): List<ResultPojo> = local.getAllSavedMovies()
+    override fun search(movieName: String): Flow<Resource<List<Movie>>> = flow {
+        emit(Resource.Loading)
+        try {
+            var res = remote.search(movieName).body()
 
-    private suspend fun saveMovies(movieList: List<ResultPojo>) {
+            emit(Resource.Success(res!!.results))
+        } catch (ex: HttpException) {
+            emit(Resource.Failed("Un expected error"))
+        } catch (ex: IOException) {
+            emit(Resource.Failed("Check your network connection"))
+        }
+    }
+
+    private suspend fun getSavedMovies(): List<Movie> = local.getAllSavedMovies()
+
+    private suspend fun saveMovies(movieList: List<Movie>) {
         local.insertMovie(movieList)
     }
+
+
 }

@@ -4,15 +4,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.movietask.domain.pojo.ResultPojo
+import com.example.movietask.domain.pojo.Movie
 
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovie(movie: List<ResultPojo>)
+    suspend fun insertMovie(movie: List<Movie>)
 
-    @Query("Select * from ResultPojo")
-    suspend fun getAllSavedMovies(): List<ResultPojo>
+    @Query("Select * from Movie")
+    suspend fun getAllSavedMovies(): List<Movie>
 
 
 }
