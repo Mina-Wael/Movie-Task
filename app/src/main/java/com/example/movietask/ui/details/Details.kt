@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.movietask.databinding.FragmentDetailsBinding
@@ -14,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Details : Fragment() {
-
 
 
     private val args: DetailsArgs by navArgs()
@@ -34,6 +34,10 @@ class Details : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setDataToUi(args.movie!!)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setDataToUi(movie: Movie) {
